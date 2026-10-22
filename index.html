@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toastmasters Meeting Countdown</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .countdown-container {
+      text-align: center;
+      background: #004165; /* Toastmasters Blue */
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      max-width: 500px;
+      width: 100%;
+    }
+    h3 {
+      margin-top: 0;
+      color: #FFCC00; /* Toastmasters Gold */
+      font-size: 22px;
+      line-height: 1.4;
+    }
+    #toastmaster-countdown {
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-top: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="countdown-container">
+    <h3>Time Until our Next meeting on October 28th at 12:00 p.m.</h3>
+    <div id="toastmaster-countdown">Loading...</div>
+  </div>
+
+  <script>
+    // SET YOUR NEXT MEETING DATE AND TIME HERE (24-Hour Format)
+    const targetDate = new Date("October 28, 2026 12:00:00").getTime();
+
+    const countdownFunction = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Output the result in the element
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("toastmaster-countdown").innerHTML = "Meeting is in Progress!";
+      } else {
+        document.getElementById("toastmaster-countdown").innerHTML = 
+          days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
