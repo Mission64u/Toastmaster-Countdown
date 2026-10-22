@@ -1,0 +1,30 @@
+<div style="text-align: center; font-family: Arial, sans-serif; background: #004165; color: white; padding: 20px; border-radius: 8px; max-width: 400px; margin: 20px auto;">
+  <h3 style="margin-top: 0; color: #FFCC00;">Time Until our Next meeting on August 26th at 5:30 p.m.</h3>
+  <div id="toastmaster-countdown" style="font-size: 24px; font-weight: bold; letter-spacing: 1px;">Loading...</div>
+</div>
+
+<script>
+// SET YOUR NEXT MEETING DATE AND TIME HERE
+// Format: "Month Day, Year HH:MM:SS" (24-hour format)
+const targetDate = new Date("October 28, 2026 12:00:00").getTime();
+
+const countdownFunction = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Output the result in the element
+  if (distance < 0) {
+    clearInterval(countdownFunction);
+    document.getElementById("toastmaster-countdown").innerHTML = "Meeting is in Progress!";
+  } else {
+    document.getElementById("toastmaster-countdown").innerHTML = 
+      days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+  }
+}, 1000);
+</script>
